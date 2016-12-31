@@ -110,7 +110,7 @@
     {
       "id": 8,
       "name": "elit",
-      "price": "2000",
+      "price": "2.000",
       "available": true,
       "best_seller": false,
       "categories": [

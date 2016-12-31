@@ -3,27 +3,45 @@
     'use strict';
     
     angular.module("storeApp",['storeData'])
-    .controller("storeController",storeController);
+    .controller("storeController",storeController)
+    .filter("names",names)
+    .filter("priceMin",filterMinPriceProducts)
+    .filter("priceMax",filterMaxPriceProducts)
+    .filter("category",filterCategories)
+    .filter("available",filterAvailableProducts)
+    .filter("bestSeller",filterBestSellerProducts);
     
-    
-    function storeController($http,dataService){
+    function storeController($http, $filter,dataService){
         var store = this;
         
         store.products=[];
         store.categories=[];
         store.filter=false;
+
+
         
         store.getData = function () {
-            
+            var products = [];
             dataService.getJSON("src/data/data.json").then(function (data){
-            console.log(data);    
-            store.products=data.products;
+            console.log(data);
+            angular.forEach(data.products,function(item){
+               item.price = parseFloat(item.price);
+               console.log("Item Price ",item.price);
+               products.push(item);
+               
+            });
+            store.products=products;
             store.categories=data.categories;
             
         });
             
         }
         
+       // store.minPrice = parseFloat(store.minPriceCurrency);
+        
+        
+        
+
         store.getFilter = function (){
             if(store.filter){
                 store.filter=false;
@@ -32,10 +50,154 @@
                 store.filter=true;
             }
         }
-        
-        
-        
-        
-        
     }
+    
+    
+    function names(){
+      return function (input,min) {
+          input = input || "";
+          var inputFiltered = [];
+          
+          if(min!=undefined){
+          
+          angular.forEach(input,function(item){
+              
+
+              if(item.price >= min)
+              inputFiltered.push(item);
+              })
+          return inputFiltered;
+          }
+          else{
+              return input;
+          }
+      }
+  }
+  
+  function filterMinPriceProducts(){
+      return function (input,minPrice) {
+          input = input || "";
+          var inputFiltered = [];
+
+          if(minPrice!=undefined && minPrice!=""){
+              
+              console.log("minPrice",minPrice);
+              
+              angular.forEach(input,function(item) {
+                  
+                console.log("Item Price",item.price);
+
+                  if(item.price>=minPrice){
+                     inputFiltered.push(item);
+                 } 
+                 
+              })
+              
+          return inputFiltered;
+              
+          }
+          else{
+          
+          return input;
+          
+          }
+              
+      }
+  }
+  
+  function filterMaxPriceProducts(){
+      return function (input,maxPrice) {
+          input = input || "";
+          var inputFiltered = [];
+          
+          console.log(maxPrice);
+          if(maxPrice!=undefined && maxPrice!=false){
+              
+              angular.forEach(input,function(item) {
+                  
+                  if(item.price <= maxPrice){
+                     inputFiltered.push(item);
+                 } 
+                 
+              })
+              
+          return inputFiltered;
+              
+          }
+          else{
+          
+          return input;
+          
+          }
+              
+      }
+  }
+  
+  function filterCategories(){
+      return function (input,category) {
+          input = input || "";
+          var inputFiltered = [];
+          
+          if(category!=undefined){
+          
+          angular.forEach(input,function(item){
+              angular.forEach(item.categories,function(itemCategory) {
+                 
+                 if(itemCategory==category){
+                     inputFiltered.push(item);
+                 } 
+              });
+              
+              })
+          return inputFiltered;
+          }
+          else{
+              return input;
+          }
+      }
+  }
+  
+  function filterAvailableProducts(){
+      return function (input,available) {
+          input = input || "";
+          var inputFiltered = [];
+          
+          if(available!=undefined){
+          
+          angular.forEach(input,function(item){
+              
+                 if(item.available==available){
+                     inputFiltered.push(item);
+                 } 
+              
+              })
+          return inputFiltered;
+          }
+          else{
+              return input;
+          }
+      }
+  }
+  
+  function filterBestSellerProducts(){
+      return function (input,bestSeller) {
+          input = input || "";
+          var inputFiltered = [];
+          
+          if(bestSeller!=undefined){
+          
+          angular.forEach(input,function(item){
+              
+                 if(item.best_seller==bestSeller){
+                     inputFiltered.push(item);
+                 } 
+              
+              })
+          return inputFiltered;
+          }
+          else{
+              return input;
+          }
+      }
+  }
 })();

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Shopping Cart</title>
+        <title>SG Store</title>
         
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +25,7 @@
 
 <aside class="app-sidebar" id="sidebar">
   <div class="sidebar-header">
-    <a class="sidebar-brand" href="#"><span class="highlight">Rappi</span> Cart</a>
+    <a class="sidebar-brand" href="#"><span class="highlight">SG</span> Store</a>
     <button type="button" class="sidebar-toggle">
       <i class="fa fa-times"></i>
     </button>
@@ -91,7 +91,7 @@
           </button>
         </li>
         <li class="logo">
-          <a class="navbar-brand" href="#"><span class="highlight">Rappi</span> Cart</a>
+          <a class="navbar-brand" href="#"><span class="highlight">SG</span> Store</a>
         </li>
         <li>
           <button type="button" class="navbar-toggle">
@@ -100,13 +100,12 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
-        <li class="navbar-title">Rappi Cart - Tienda</li>
+        <li class="navbar-title">SG Store - Tienda</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown profile">
           <a href="/html/pages/profile.html" class="dropdown-toggle" data-toggle="dropdown">
             <img class="profile-img" src="https://avatars2.githubusercontent.com/u/17608169?v=3&s=460">
-            <div class="title">Profile</div>
           </a>
           <div class="dropdown-menu">
             <div class="profile-info">
@@ -128,9 +127,9 @@
         <div class="card-header">
                 <div class="app-heading">
         <div class="app-title">
-          <div class="title">Optimiza tu busquedad utilizando '<span class="highlight">Rappi Filter</span>'</div>
+          <div class="title">Optimiza tu busquedad utilizando <span class="highlight">Smart Filter</span></div>
           <div class="description">Encuentra todo más facil ya sea por nombre , precio, categoria, disponibilidad y más vendidos.</div>
-          <button class="btn btn-success" ng-click="storeCtrl.getFilter()">Usar Rappi Filter</button>
+          <button class="btn btn-success" ng-click="storeCtrl.getFilter()">Usar Smart Filter</button>
         </div>
       </div>
 
@@ -147,8 +146,10 @@
         </div>
          <label class="col-md-1 control-label">Categoria</label>
       <div class="col-md-4">
-                    <input type="number" class="form-control">
-
+<select class="select2" ng-model=storeCtrl.categorySearch>
+                      <option ng-value="" ng-selected="selected">Ninguna</option>
+                       <option ng-repeat="category in storeCtrl.categories" ng-value="category.categori_id">{{category.name}}</option>
+    </select>
         </div>               
       </div>
       
@@ -159,25 +160,19 @@
         </div>
         <div class="col-md-5">
       <div>
-      <div class="radio radio-inline">
-          <input type="radio" name="radio2" id="radio5" value="option1">
+      <div class="checkbox checkbox-inline">
+          <input type="checkbox" id="radio5" ng-model="storeCtrl.maxPrice" ng-true-value= "10" ng-false-value="">
           <label for="radio5">
               Menor a 10.000
           </label>
       </div>
-      <div class="radio radio-inline">
-          <input type="radio" name="radio2" id="radio6" value="option2" checked="">
+      <div class="checkbox checkbox-inline">
+          <input type="checkbox" id="radio6" ng-model="storeCtrl.minPrice" ng-true-value="30" ng-false-value="">
           <label for="radio6">
               Mayor a 30.000
           </label>
       </div>
-            <div class="radio radio-inline">
-          <input type="radio" name="radio2" id="radio6" value="option2" checked="">
-          <label for="radio6">
-              Otro
-          </label>
-      </div>
-      
+
     
 
       
@@ -187,43 +182,107 @@
 
         </div>
         
+        <!-- Custom filter by price
         <div class="col-md-2">
           <div class="input-group">
             <span class="input-group-addon">$ </span>
-            <input type="number" class="form-control" placeholder="Min ">
+            <input type="number" class="form-control" ng-model="storeCtrl.minPriceCurrency" placeholder="Min">
           </div>
         </div>
         
         <div class="col-md-2">
           <div class="input-group">
             <span class="input-group-addon">$ </span>
-            <input type="number" class="form-control" placeholder="Max ">
+            <input type="number" class="form-control" ng-model="storeCtrl.maxPriceCurrency" placeholder="Max ">
           </div>
         </div>
 
+        -->
+        
       </div>
       
       <div class="form-group">
         <div class="col-md-1">
-          <label class="control-label">Precio</label>
+          <label class="control-label">Otros</label>
         </div>
         <div class="col-md-5">
       <div>
-      <div class="checkbox checkbox-inline">
-          <input type="checkbox" name="radio2" id="radio5" value="option1">
-          <label for="radio5">
-              Agotados
-          </label>
-      </div>
-      <div class="checkbox checkbox-inline">
-          <input type="checkbox" name="radio2" id="radio5" value="option1">
-          <label for="radio5">
+      <div class="radio radio-inline">
+          <input type="radio" id="radioAvailable" ng-model="storeCtrl.checkAvailableFilter" ng-value=true>
+          <label for="radioAvailable">
               Disponible
           </label>
       </div>
-            <div class="checkbox checkbox-inline">
-          <input type="checkbox" name="radio2" id="radio5" value="option1">
-          <label for="radio5">
+      <div class="radio radio-inline">
+          <input type="radio" id="radioNotAvailable" ng-model="storeCtrl.checkAvailableFilter" ng-value=false>
+          <label for="radioNotAvailable">
+              Agotado
+          </label>
+      </div>
+      <div class="radio radio-inline">
+          <input type="radio" id="radioAvailableAll" ng-model="storeCtrl.checkAvailableFilter" ng-value="">
+          <label for="radioAvailableAll">
+              Todos
+          </label>
+      </div>
+      
+      <div class="checkbox checkbox-inline">
+          <input type="checkbox" id="checkBestSellerFilter" ng-model="storeCtrl.checkBestSellerFilter" ng-true-value=true ng-false-value="">
+          <label for="checkBestSellerFilter">
+              Más Vendidos
+          </label>
+      </div>
+
+    
+
+      
+
+    </div>
+
+
+        </div>
+        
+      
+
+      </div>
+
+      
+      
+      
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">Ordenar Productos</div>
+    <div class="section-body">
+      <!-- Form group here -->
+      
+      <div class="form-group">
+        <div class="col-md-1">
+          <label class="control-label">Otros</label>
+        </div>
+        <div class="col-md-5">
+      <div>
+      <div class="radio radio-inline">
+          <input type="radio" name="checkSoldOutGroup" id="checkSoldOut" ng-model="storeCtrl.checkSoldOut" ng-value="'available'">
+          <label for="checkSoldOut">
+              Agotados
+          </label>
+      </div>
+      <div class="radio radio-inline">
+          <input type="radio" name="checkSoldOutGroup" id="checkAvailable" ng-model="storeCtrl.checkSoldOut" ng-value="'-available'">
+          <label for="checkAvailable">
+              Disponible
+          </label>
+      </div>
+      <div class="radio radio-inline">
+          <input type="radio" name="checkSoldOutGroup" id="checkAll" ng-model="storeCtrl.checkSoldOut" ng-value="''" >
+          <label for="checkAll">
+              Al azar
+          </label>
+      </div>
+          <div class="checkbox checkbox-inline">
+          <input type="checkbox"  id="checkBestSeller" ng-model="storeCtrl.checkBestSeller" ng-true-value="'-best_seller'">
+          <label for="checkBestSeller">
               Más vendidos
           </label>
       </div>
@@ -240,16 +299,6 @@
       
 
       </div>
-      
-      
-      
-      
-    </div>
-  </div>
-  <div class="section">
-    <div class="section-title">Ordenar Productos</div>
-    <div class="section-body">
-      <!-- Form group here -->
     </div>
   </div>
 </form>
@@ -257,34 +306,42 @@
       </div>
     </div>
     
-    
-    
   </div>
   <div class="row">
     <div class="col-lg-12">
       <div class="card ">
+        
         <div class="card-header">
           Encuentra aqui todos los productos de nuestra tienda 
+          
+            <br>
+            <b>Resultados: </b> {{query.length}} 
+          
         </div>
+        
         <div class="card-body no-padding">
           <div  class="" id="tab1">
             <div class="search-result">
               <ul class="result">
-                <li ng-repeat="product in storeCtrl.products | filter:{ name: productNameSearch }">
+                <li ng-repeat="product in query = ( storeCtrl.products | priceMin:storeCtrl.minPrice | priceMax:storeCtrl.maxPrice  |bestSeller:storeCtrl.checkBestSellerFilter |  available:storeCtrl.checkAvailableFilter |category:storeCtrl.categorySearch | filter:{ name: productNameSearch } | filter: {best_seller: checkBestSeller} | orderBy: '-price' | orderBy:storeCtrl.checkSoldOut | orderBy: storeCtrl.checkBestSeller | orderBy:'price')">
                   <div class="img">
                     <img ng-src="{{product.img}}">
                   </div>
                   <div class="info">
-                    <div class="title"><a href="#"><span class="highlight">{{product.name}}</span> {{product.price}}</a></div>
+                    <div class="title"><a href="#"><span class="highlight">{{product.name}}</span> {{product.price | number :3}}</a></div>
                     <div class="description">{{product.description}}</div>
                   <ul class=icons>
-                    <li ng-show="{{product.available}}"><i class="fa fa-bullseye" style="border:none,"></i>
+                    <li ng-show="{{product.available}}"><i class="fa fa-check" style="border:none,"></i>
                     <div>Available</div>
                     </li>
-                    <li ng-show="{{product.best_seller}}"><i class="fa fa-bullseye" style="border:none,"></i>
+                    <li ng-show="{{!product.available}}"><i class="fa fa-close" style="border:none,"></i>
+                    <div>Not Available</div>
+                    </li>
+                    <li ng-show="{{product.best_seller}}"><i class="fa fa-certificate" style="border:none,"></i>
                     <div>best Seller</div>
                     </li>
                   </ul>
+                  <button class="btn btn-primary">Agregar al Carrito</button> 
                   </div>
                 </li>
                 

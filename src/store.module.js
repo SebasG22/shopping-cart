@@ -2,7 +2,7 @@
     
     'use strict';
     
-    angular.module("storeApp",['ui.router','storeData','cart','menu'])
+    angular.module("storeApp",['ui.router','storeData','cart','menu','ngDialog'])
     .controller("storeController",storeController)
     .filter("names",names)
     .filter("priceMin",filterMinPriceProducts)
@@ -11,7 +11,7 @@
     .filter("available",filterAvailableProducts)
     .filter("bestSeller",filterBestSellerProducts);
     
-    function storeController($http, $filter,dataService,cartService){
+    function storeController($http, $filter,dataService,cartService,ngDialog){
         var store = this;
         
         store.products=[];
@@ -44,6 +44,11 @@
                 break;
               }
             }
+            
+            ngDialog.open({
+            template: '<h1>Hemos agregado este producto a tu bolsa de compras.</h1><button class="btn btn-primary">Agregar otro producto </button>',
+            plain: true
+            });
             
 
         }

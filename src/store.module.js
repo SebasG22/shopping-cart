@@ -2,7 +2,7 @@
     
     'use strict';
     
-    angular.module("storeApp",['storeData'])
+    angular.module("storeApp",['ui.router','storeData','cart'])
     .controller("storeController",storeController)
     .filter("names",names)
     .filter("priceMin",filterMinPriceProducts)
@@ -11,7 +11,7 @@
     .filter("available",filterAvailableProducts)
     .filter("bestSeller",filterBestSellerProducts);
     
-    function storeController($http, $filter,dataService){
+    function storeController($http, $filter,dataService,cartService){
         var store = this;
         
         store.products=[];
@@ -26,7 +26,6 @@
             console.log(data);
             angular.forEach(data.products,function(item){
                item.price = parseFloat(item.price);
-               console.log("Item Price ",item.price);
                products.push(item);
                
             });
@@ -36,6 +35,20 @@
         });
             
         }
+        
+        store.addProduct = function (id){
+            
+            for (var i = 0 ; i < store.products.length; i++) {
+              if (store.products[i].id === id) {
+                cartService.addProduct(store.products[i]);
+                break;
+              }
+            }
+            
+
+        }
+        
+        store.items_Cart = cartService.getCar();
         
        // store.minPrice = parseFloat(store.minPriceCurrency);
         
@@ -51,6 +64,19 @@
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     function names(){
@@ -81,11 +107,9 @@
 
           if(minPrice!=undefined && minPrice!=""){
               
-              console.log("minPrice",minPrice);
-              
+
               angular.forEach(input,function(item) {
                   
-                console.log("Item Price",item.price);
 
                   if(item.price>=minPrice){
                      inputFiltered.push(item);
@@ -110,7 +134,6 @@
           input = input || "";
           var inputFiltered = [];
           
-          console.log(maxPrice);
           if(maxPrice!=undefined && maxPrice!=false){
               
               angular.forEach(input,function(item) {

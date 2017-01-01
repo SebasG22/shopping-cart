@@ -13,43 +13,44 @@
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/blue.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/red.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/yellow.css">
+  
 
     </head>
     
-    <body>
+    <body ng-app="storeApp">
   <div class="app app-default">
 
 <aside class="app-sidebar" id="sidebar">
   <div class="sidebar-header">
-    <a class="sidebar-brand" href="#"><span class="highlight">Rappi</span> Cart</a>
+    <a class="sidebar-brand" href="#"><span class="highlight">SG</span> Store</a>
     <button type="button" class="sidebar-toggle">
       <i class="fa fa-times"></i>
     </button>
   </div>
   <div class="sidebar-menu">
     <ul class="sidebar-nav">
-      <li class="">
-        <a>
+      <li ui-sref="home">
+        <a style="cursor:pointer">
           <div class="icon">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
+            <i class="fa fa-home" aria-hidden="true"></i>
           </div>
           <div class="title">Bienvenido</div>
         </a>
       </li>
-      <li class="@@menu.messaging">
-        <a href="../messaging.html">
+      <li  ui-sref="store">
+        <a  style="cursor:pointer">
           <div class="icon">
-            <i class="fa fa-comments" aria-hidden="true"></i>
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
           </div>
           <div class="title">Tienda</div>
         </a>
       </li>
-      <li>
-        <a>
+      <li ui-sref="cart">
+        <a style="cursor:pointer">
           <div class="icon">
-            <i class="fa fa-cube" aria-hidden="true"></i>
+            <i class="fa fa-money" aria-hidden="true"></i>
           </div>
-          <div class="title">Faq</div>
+          <div class="title">Carrito</div>
         </a>
       </li>
       <li>
@@ -88,7 +89,7 @@
           </button>
         </li>
         <li class="logo">
-          <a class="navbar-brand" href="#"><span class="highlight">Rappi</span> Cart</a>
+          <a class="navbar-brand" href="#"><span class="highlight">SG</span> Store</a>
         </li>
         <li>
           <button type="button" class="navbar-toggle">
@@ -97,7 +98,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
-        <li class="navbar-title">Rappi Cart - Bienvenida</li>
+        <li class="navbar-title">SG Store - Bienvenida</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown profile">
@@ -117,20 +118,15 @@
 </nav>
 
 
-
-<div class=row>
-    <div class="jumbotron" style="text-align:center">
-    <h1>Bienvenido a SG Shopping Cart</h1>      
-    <p>Encuentra los mejores productos con el precio mas bajo del mercado.</p>
-  </div>
-    </div>
+     <ui-view> </ui-view>
 
 
 
 
-<div class=row>
-    <img class="img-responsive" src="https://www.rappi.com/assets/images/canasta-ipad-copy-11@2x.png" style="display: block; margin: 0px auto; ">
-</div>
+
+
+
+
 
 
 
@@ -147,6 +143,16 @@
 </div>
   </div>
   
+ 
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+
+  <script type="text/javascript" src="./src/store.module.js"></script>
+  <script type="text/javascript" src="./src/routes.js"></script>
+  <script type="text/javascript" src="./src/data.service.js"></script>
+  <script type="text/javascript" src="./src/car.module.js"></script>
+  <script type="text/javascript" src="./src/car.service.js"></script>
+
  
 </body>
 

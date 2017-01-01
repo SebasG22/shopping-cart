@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="cartCtrl.items_Cart.length > 0">
+    <div class="card card-mini">
+      <div class="card-header">
+        <div class="card-title">Mi carro de compras</div>
+      </div>
+      <div  class="card-body no-padding table-responsive">
+        <table class="table card-table">
+          <thead>
+            <tr>
+              <th>Codigo</th>
+              <th class="right">Nombre</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in cartCtrl.items_Cart">
+              <td>{{item.id}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.description}}</td>
+              <td>{{item.price | number:3}}</td>
+              <td><button class="btn btn-danger">Eliminar</button></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+  <div ng-show="cartCtrl.items_Cart.length == 0">
+      <i style="font-size:12em; display:block; margin:0px auto; width: 100px"class="fa fa-frown-o align-center" aria-hidden="true"></i>
+
+      <h2 style="text-align:center">No has comprado nada todavia en nuestra tienda, agrega productos al carrito.</h2>
+
+  </div>
+            
+
+  </div>

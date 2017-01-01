@@ -1,126 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>SG Store</title>
-        
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-
-  <link rel="stylesheet" type="text/css" href="./assets/css/vendor.css">
-  <link rel="stylesheet" type="text/css" href="./assets/css/flat-admin.css">
-  
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-  
-  <script type="text/javascript" src="./src/store.module.js"></script>
-  <script type="text/javascript" src="./src/data.service.js"></script>
-
-  <!-- Theme -->
- 
-
-    </head>
-    
-    <body ng-app="storeApp">
-  <div class="app app-default" ng-controller="storeController as storeCtrl" ng-init="storeCtrl.getData()">
-
-<aside class="app-sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <a class="sidebar-brand" href="#"><span class="highlight">SG</span> Store</a>
-    <button type="button" class="sidebar-toggle">
-      <i class="fa fa-times"></i>
-    </button>
-  </div>
-  <div class="sidebar-menu">
-    <ul class="sidebar-nav">
-      <li class="">
-        <a>
-          <div class="icon">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-          </div>
-          <div class="title">Bienvenido</div>
-        </a>
-      </li>
-      <li class="@@menu.messaging">
-        <a href="../messaging.html">
-          <div class="icon">
-            <i class="fa fa-comments" aria-hidden="true"></i>
-          </div>
-          <div class="title">Tienda</div>
-        </a>
-      </li>
-      <li>
-        <a>
-          <div class="icon">
-            <i class="fa fa-cube" aria-hidden="true"></i>
-          </div>
-          <div class="title">Faq</div>
-        </a>
-      </li>
-      <li>
-        <a>
-          <div class="icon">
-            <i class="fa fa-file-o" aria-hidden="true"></i>
-          </div>
-          <div class="title">About</div>
-        </a>
-        
-      </li>
-    </ul>
-  </div>
-  <div class="sidebar-footer">
-    <ul class="menu">
-      <li>
-        <a>
-          App Version 1.0
-        </a>
-      </li>
-      
-    </ul>
-  </div>
-</aside>
-
-
-<div class="app-container">
-  <nav class="navbar navbar-default" id="navbar">
-  <div class="container-fluid">
-    <div class="navbar-collapse collapse in">
-      <ul class="nav navbar-nav navbar-mobile">
-        <li>
-          <button type="button" class="sidebar-toggle">
-            <i class="fa fa-bars"></i>
-          </button>
-        </li>
-        <li class="logo">
-          <a class="navbar-brand" href="#"><span class="highlight">SG</span> Store</a>
-        </li>
-        <li>
-          <button type="button" class="navbar-toggle">
-            <img class="profile-img" src="./assets/images/profile.png">
-          </button>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-left">
-        <li class="navbar-title">SG Store - Tienda</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown profile">
-          <a href="/html/pages/profile.html" class="dropdown-toggle" data-toggle="dropdown">
-            <img class="profile-img" src="https://avatars2.githubusercontent.com/u/17608169?v=3&s=460">
-          </a>
-          <div class="dropdown-menu">
-            <div class="profile-info">
-              <h4 class="username">Desarollador por <br>Sebastian Guevara</h4>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-  <div class="row">
-    
+<div class="row" ng-init="storeCtrl.getData()">
     
     <div class="col-md-12">
       <div class="card">
@@ -307,6 +185,7 @@
     </div>
     
   </div>
+  
   <div class="row">
     <div class="col-lg-12">
       <div class="card ">
@@ -319,11 +198,12 @@
           
         </div>
         
+      
         <div class="card-body no-padding">
           <div  class="" id="tab1">
             <div class="search-result">
               <ul class="result">
-                <li ng-repeat="product in query = ( storeCtrl.products | priceMin:storeCtrl.minPrice | priceMax:storeCtrl.maxPrice  |bestSeller:storeCtrl.checkBestSellerFilter |  available:storeCtrl.checkAvailableFilter |category:storeCtrl.categorySearch | filter:{ name: productNameSearch } | filter: {best_seller: checkBestSeller} | orderBy: '-price' | orderBy:storeCtrl.checkSoldOut | orderBy: storeCtrl.checkBestSeller | orderBy:'price')">
+                <li ng-repeat="product in storeCtrl.products | priceMin:storeCtrl.minPrice | priceMax:storeCtrl.maxPrice  |bestSeller:storeCtrl.checkBestSellerFilter |  available:storeCtrl.checkAvailableFilter |category:storeCtrl.categorySearch | filter:{ name: productNameSearch } | filter: {best_seller: checkBestSeller} | orderBy:storeCtrl.checkSoldOut">
                   <div class="img">
                     <img ng-src="{{product.img}}">
                   </div>
@@ -341,7 +221,7 @@
                     <div>best Seller</div>
                     </li>
                   </ul>
-                  <button class="btn btn-primary">Agregar al Carrito</button> 
+                  <button ng-show="{{product.available}}" class="btn btn-primary" ng-click="storeCtrl.addProduct(product.id)">Agregar al Carrito</button> 
                   </div>
                 </li>
                 
@@ -355,11 +235,3 @@
       </div>
     </div>
   </div>
-
-</div>  </div>
-  
- 
-</body>
-
-    
-</html>

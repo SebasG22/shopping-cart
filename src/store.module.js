@@ -2,7 +2,7 @@
     
     'use strict';
     
-    angular.module("storeApp",['ui.router','storeData','cart'])
+    angular.module("storeApp",['ui.router','storeData','cart','menu'])
     .controller("storeController",storeController)
     .filter("names",names)
     .filter("priceMin",filterMinPriceProducts)

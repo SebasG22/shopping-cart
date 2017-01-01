@@ -2,7 +2,7 @@
     
     'use strict';
     
-    angular.module('storeApp')
+    angular.module('menu')
     .config(RoutesConfig);
     
     

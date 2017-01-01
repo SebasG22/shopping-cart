@@ -18,26 +18,29 @@
     </head>
     
     <body ng-app="storeApp">
+      
   <div class="app app-default">
 
-<aside class="app-sidebar" id="sidebar">
+<div ng-controller="storeMenuController as storeCtrl">
+  
+<aside class="{{storeCtrl.class}}" id="sidebar">
   <div class="sidebar-header">
     <a class="sidebar-brand" href="#"><span class="highlight">SG</span> Store</a>
-    <button type="button" class="sidebar-toggle">
+    <button type="button" class="sidebar-toggle" ng-click="storeCtrl.openItem()">
       <i class="fa fa-times"></i>
     </button>
   </div>
   <div class="sidebar-menu">
     <ul class="sidebar-nav">
       <li ui-sref="home">
-        <a style="cursor:pointer">
+        <a style="cursor:pointer" ng-click="storeCtrl.openItem()">
           <div class="icon">
             <i class="fa fa-home" aria-hidden="true"></i>
           </div>
           <div class="title">Bienvenido</div>
         </a>
       </li>
-      <li  ui-sref="store">
+      <li  ui-sref="store" ng-click="storeCtrl.openItem()">
         <a  style="cursor:pointer">
           <div class="icon">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -45,7 +48,7 @@
           <div class="title">Tienda</div>
         </a>
       </li>
-      <li ui-sref="cart">
+      <li ui-sref="cart" ng-click="storeCtrl.openItem()">
         <a style="cursor:pointer">
           <div class="icon">
             <i class="fa fa-money" aria-hidden="true"></i>
@@ -55,7 +58,7 @@
       </li>
       <li>
         <a>
-          <div class="icon">
+          <div class="icon" ng-click="storeCtrl.openItem()">
             <i class="fa fa-file-o" aria-hidden="true"></i>
           </div>
           <div class="title">About</div>
@@ -76,15 +79,14 @@
   </div>
 </aside>
 
-
 <div class="app-container">
 
-  <nav class="navbar navbar-default" id="navbar">
+   <nav class="navbar navbar-default" id="navbar">
   <div class="container-fluid">
     <div class="navbar-collapse collapse in">
       <ul class="nav navbar-nav navbar-mobile">
         <li>
-          <button type="button" class="sidebar-toggle">
+          <button type="button" class="sidebar-toggle" ng-click="storeCtrl.openMenu()">
             <i class="fa fa-bars"></i>
           </button>
         </li>
@@ -116,19 +118,11 @@
     </div>
   </div>
 </nav>
+  
+       <ui-view> </ui-view>
 
-
-     <ui-view> </ui-view>
-
-
-
-
-
-
-
-
-
-
+</div>
+ 
 
   <footer class="app-footer"> 
   <div class="row">
@@ -141,6 +135,7 @@
   </div>
 </footer>
 </div>
+
   </div>
   
  
@@ -148,6 +143,8 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
 
   <script type="text/javascript" src="./src/store.module.js"></script>
+    <script type="text/javascript" src="./src/menu.module.js"></script>
+
   <script type="text/javascript" src="./src/routes.js"></script>
   <script type="text/javascript" src="./src/data.service.js"></script>
   <script type="text/javascript" src="./src/car.module.js"></script>

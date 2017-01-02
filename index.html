@@ -61,10 +61,10 @@
           <div class="title">Carrito</div>
         </a>
       </li>
-      <li>
-        <a>
-          <div class="icon" ng-click="storeCtrl.openItem()">
-            <i class="fa fa-file-o" aria-hidden="true"></i>
+      <li ui-sref="about" ng-click="storeCtrl.openItem()">
+        <a style="cursor:pointer">
+          <div class="icon">
+            <i class="fa fa-code" aria-hidden="true"></i>
           </div>
           <div class="title">About</div>
         </a>
@@ -100,7 +100,7 @@
         </li>
         <li>
           <button type="button" class="navbar-toggle">
-            <img class="profile-img" src="./assets/images/profile.png">
+            <img class="profile-img" src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Shop-128.png">
           </button>
         </li>
       </ul>
@@ -108,16 +108,10 @@
         <li class="navbar-title">SG Store - Bienvenida</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown profile">
-          <a href="/html/pages/profile.html" class="dropdown-toggle" data-toggle="dropdown">
-            <img class="profile-img" src="https://avatars2.githubusercontent.com/u/17608169?v=3&s=460">
-            <div class="title">Profile</div>
+        <li class="profile">
+          <a href="/html/pages/profile.html">
+            <img class="profile-img" src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Shop-64.png">
           </a>
-          <div class="dropdown-menu">
-            <div class="profile-info">
-              <h4 class="username">Desarollador por <br>Sebastian Guevara</h4>
-            </div>
-          </div>
         </li>
       </ul>
     </div>
@@ -125,9 +119,6 @@
 </nav>
   
        <ui-view> </ui-view>
-
-</div>
- 
 
   <footer class="app-footer"> 
   <div class="row">
@@ -139,6 +130,10 @@
     </div>
   </div>
 </footer>
+
+</div>
+ 
+
 </div>
 
   </div>
@@ -158,7 +153,6 @@
   <!-- ng-dialog -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.6.4/js/ngDialog.min.js"></script>  
 
- 
 </body>
 
     

@@ -32,6 +32,11 @@
         controller:"cartController as cartCtrl"
       })
       
+      .state('about', {
+        url: '/acerca',
+        templateUrl: './src/views/about.html'
+        })
+      
     }
     
     

@@ -21,7 +21,7 @@
               <td>{{item.name}}</td>
               <td>{{item.description}}</td>
               <td>{{item.price | number:3}}</td>
-              <td><button class="btn btn-danger">Eliminar</button></td>
+              <td><button class="btn btn-danger" ng-click="cartCtrl.deleteFromCart(item.id)">Eliminar</button></td>
             </tr>
             
           </tbody>

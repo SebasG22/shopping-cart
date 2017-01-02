@@ -16,10 +16,9 @@
             console.log("product saved")
         }
         
-        cartService.deleteProduct = function (product){
-            var shoppingCart = carService.getCar();
-            var index = shoppingCart.indexOf(product);
-            array.splice(index, 1);
+        cartService.deleteProduct = function (index){
+            var shoppingCart = cartService.getCar();
+            shoppingCart.splice(index, 1);
         }
         
         cartService.getCar = function (){

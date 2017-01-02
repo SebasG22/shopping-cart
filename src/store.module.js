@@ -46,7 +46,7 @@
             }
             
             var a =ngDialog.open({
-            template: './src/modal.html'
+            template: './src/views/modals/productAddedModal.html'
             });
             
 

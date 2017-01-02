@@ -46,8 +46,7 @@
             }
             
             var a =ngDialog.open({
-            template: '<h1>Hemos agregado este producto a tu bolsa de compras.</h1><button class="btn btn-primary">Agregar otro producto </button>',
-            plain: true
+            template: './src/modal.html'
             });
             
 

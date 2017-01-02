@@ -5,9 +5,9 @@
         <div class="card-header">
                 <div class="app-heading">
         <div class="app-title">
-          <div class="title">Optimiza tu busquedad utilizando <span class="highlight">Smart Filter</span></div>
+          <div class="title">Optimiza tu busquedad utilizando <span class="highlight" style="color:#39c3da">Smart Filter</span></div>
           <div class="description">Encuentra todo más facil ya sea por nombre , precio, categoria, disponibilidad y más vendidos.</div>
-          <button class="btn btn-success" ng-click="storeCtrl.getFilter()">Usar Smart Filter</button>
+          <button class="btn btn-info" ng-click="storeCtrl.getFilter()">Usar Smart Filter</button>
         </div>
       </div>
 
@@ -208,20 +208,22 @@
                     <img ng-src="{{product.img}}">
                   </div>
                   <div class="info">
-                    <div class="title"><a href="#"><span class="highlight">{{product.name}}</span> {{product.price | number :3}}</a></div>
+                    <div class="title"><a href="#"><span class="highlight">{{product.name}}</span> {{product.price | currency:"COP $":3}}</a></div>
                     <div class="description">{{product.description}}</div>
-                  <ul class=icons>
-                    <li ng-show="{{product.available}}"><i class="fa fa-check" style="border:none,"></i>
-                    <div>Available</div>
-                    </li>
-                    <li ng-show="{{!product.available}}"><i class="fa fa-close" style="border:none,"></i>
-                    <div>Not Available</div>
-                    </li>
-                    <li ng-show="{{product.best_seller}}"><i class="fa fa-certificate" style="border:none,"></i>
-                    <div>best Seller</div>
-                    </li>
-                  </ul>
-                  <button ng-show="{{product.available}}" class="btn btn-primary" ng-click="storeCtrl.addProduct(product.id)">Agregar al Carrito</button> 
+                    
+                    
+                    <br>
+                    <span ng-show="{{product.available}}" class="badge badge-success badge-icon"><i class="fa fa-check" aria-hidden="true"></i><span>Disponible</span></span>
+                    
+                    <span ng-show="{{!product.available}}" class="badge badge-danger badge-icon"><i class="fa fa-close" aria-hidden="true"></i><span>Agotado</span></span>
+
+                    <span ng-show="{{product.best_seller}}" class="badge badge-sucess badge-icon"><i class="fa fa-fire" aria-hidden="true"></i><span>Más vendido</span></span>
+
+                  
+
+                <br>
+                <br>
+                  <button ng-show="{{product.available}}" class="btn btn-info" ng-click="storeCtrl.addProduct(product.id)">Agregar al Carrito</button> 
                   </div>
                 </li>
                 

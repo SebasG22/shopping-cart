@@ -10,22 +10,25 @@
             <tr>
               <th>Codigo</th>
               <th class="right">Nombre</th>
+              
               <th>Descripción</th>
               <th>Precio</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="item in cartCtrl.items_Cart">
+            <tr ng-repeat="item in countCart = (cartCtrl.items_Cart)">
               <td>{{item.id}}</td>
-              <td>{{item.name}}</td>
+              <td><img ng-src="{{item.img}}"> {{item.name}}</td>
               <td>{{item.description}}</td>
               <td>{{item.price | number:3}}</td>
               <td><button class="btn btn-danger" ng-click="cartCtrl.deleteFromCart(item.id)">Eliminar</button></td>
             </tr>
-            
           </tbody>
         </table>
+        
+                    <h5 class="pull-right">Total: {{cartCtrl.getTotal() | currency : "COP$":3}} <br> # Productos:{{countCart.length}}</h5>
+                    
       </div>
       <div>
       </div>

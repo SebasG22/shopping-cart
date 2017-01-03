@@ -39,6 +39,8 @@
               }
             }
             
+            store.deleteProduct(id);
+            
             var a =ngDialog.open({
             template: './src/views/modals/productAddedModal.html'
             });
@@ -46,7 +48,14 @@
 
         }
         
-        store.items_Cart = cartService.getCar();
+        store.deleteProduct = function (id) {
+            for (var i = 0 ; i < store.products.length; i++) {
+              if (store.products[i].id === id) {
+                  store.products.splice(i,1);
+                break;
+              }
+            }
+        }
         
         store.getFilter = function (){
             if(store.filter){
@@ -56,6 +65,23 @@
                 store.filter=true;
             }
         }
+        
+        store.getExternalData = function (url) {
+            var products = [];
+            dataService.getJSON(url).then(function (data){
+            console.log(data);
+            angular.forEach(data.products,function(item){
+               item.price = parseFloat(item.price);
+               products.push(item);
+               
+            });
+            store.products=products;
+            store.categories=data.categories;
+            
+        });
+            
+        }
+        
     }
     
     

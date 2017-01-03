@@ -9,6 +9,8 @@
         
         var car =this;
         
+        car.items_Cart = cartService.getCar();
+
         car.deleteFromCart = function (id){
             
             for (var i = 0 ; i < car.items_Cart.length; i++) {
@@ -24,10 +26,14 @@
             
         }
         
-        
+        car.getTotal = function (){
+            var total = 0;
+            angular.forEach(car.items_Cart,function (product){
+                total+=product.price;
+            });
             
-            
-        car.items_Cart = cartService.getCar();
+            return total;
+        }
         
     }
     

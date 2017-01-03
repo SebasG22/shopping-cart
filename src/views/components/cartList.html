@@ -10,24 +10,26 @@
             <tr>
               <th>Codigo</th>
               <th class="right">Nombre</th>
-              
+              <th>Cantidad</th>
               <th>Descripción</th>
-              <th>Precio</th>
+              <th>Precio Unitario</th>
+              <th>Precio Total</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="item in countCart = (cartCtrl.items_Cart)">
+            <tr ng-repeat="item in  cartCtrl.items_Cart">
               <td>{{item.id}}</td>
               <td><img ng-src="{{item.img}}"> {{item.name}}</td>
+              <td>{{item.quantity}}</td>
               <td>{{item.description}}</td>
-              <td>{{item.price | number:3}}</td>
+              <td>{{item.price | currency:"COP$":3}}</td>
+              <td>{{item.priceT | currency:"COP$":3}}</td>
               <td><button class="btn btn-danger" ng-click="cartCtrl.deleteFromCart(item.id)">Eliminar</button></td>
             </tr>
           </tbody>
         </table>
-        
-                    <h5 class="pull-right">Total: {{cartCtrl.getTotal() | currency : "COP$":3}} <br> # Productos:{{countCart.length}}</h5>
+                    <h5 class="pull-right">Total: {{cartCtrl.getTotalPrice() | currency : "COP$":3}} <br> # Productos:{{cartCtrl.getTotalProducts()}}</h5>
                     
       </div>
       <div>

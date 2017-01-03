@@ -212,7 +212,6 @@
                     <div class="title"><a href="#"><span class="highlight">{{product.name}}</span> {{product.price | currency:"COP $":3}}</a></div>
                     <div class="description">{{product.description}}</div>
                     
-                    
                     <br>
                     <span ng-show="{{product.available}}" class="badge badge-success badge-icon"><i class="fa fa-check" aria-hidden="true"></i><span>Disponible</span></span>
                     
@@ -224,7 +223,7 @@
 
                 <br>
                 <br>
-                  <button ng-show="{{product.available}}" class="btn btn-info" ng-click="storeCtrl.addProduct(product.id)">Agregar al Carrito</button> 
+                  <button ng-show="{{product.available}}" class="btn btn-info" ng-click="storeCtrl.addProductToCart(product.id)">Agregar al Carrito</button> 
                   </div>
                 </li>
                 

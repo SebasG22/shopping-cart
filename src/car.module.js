@@ -26,10 +26,19 @@
             
         }
         
-        car.getTotal = function (){
+        car.getTotalPrice = function (){
             var total = 0;
             angular.forEach(car.items_Cart,function (product){
-                total+=product.price;
+                total+=product.priceT;
+            });
+            
+            return total;
+        }
+        
+            car.getTotalProducts = function (){
+            var total = 0;
+            angular.forEach(car.items_Cart,function (product){
+                total+=product.quantity;
             });
             
             return total;

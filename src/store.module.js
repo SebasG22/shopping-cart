@@ -30,7 +30,7 @@
             
         }
         
-        store.addProduct = function (id){
+        store.addProductToCart = function (id){
             
             for (var i = 0 ; i < store.products.length; i++) {
               if (store.products[i].id === id) {
@@ -39,7 +39,7 @@
               }
             }
             
-            store.deleteProduct(id);
+            //store.deleteProduct(id);
             
             var a =ngDialog.open({
             template: './src/views/modals/productAddedModal.html'

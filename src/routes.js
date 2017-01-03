@@ -22,13 +22,13 @@
       
       .state('store', {
         url: '/tienda',
-        templateUrl: './src/views/store.html',
+        templateUrl: './src/views/storeView.html',
         controller:"storeController as storeCtrl"
       })
       
       .state('cart', {
         url: '/carroCompras',
-        templateUrl: './src/views/cart.html',
+        templateUrl: './src/views/cartView.html',
         controller:"cartController as cartCtrl"
       })
       

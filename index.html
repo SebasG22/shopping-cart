@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/blue.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/red.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/yellow.css">
+  <link rel="stylesheet" href="./assets/css/ng-sticky.css" type="text/css" />
   
   <!-- ng-dialog -->
   
@@ -28,7 +29,7 @@
 
 <div ng-controller="storeMenuController as storeCtrl">
   
-<aside class="{{storeCtrl.class}}" id="sidebar">
+<aside class="{{storeCtrl.class}}" sticky-nav="">
   <div class="sidebar-header">
     <a class="sidebar-brand" href="#"><span class="highlight">SG</span> Store</a>
     <button type="button" class="sidebar-toggle" ng-click="storeCtrl.openItem()">
@@ -143,6 +144,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
 
   <script type="text/javascript" src="./src/store.module.js"></script>
+  <script type="text/javascript" src="./src/filters.js"></script>
     <script type="text/javascript" src="./src/menu.module.js"></script>
 
   <script type="text/javascript" src="./src/routes.js"></script>
@@ -150,8 +152,18 @@
   <script type="text/javascript" src="./src/car.module.js"></script>
   <script type="text/javascript" src="./src/car.service.js"></script>
   
+  <!-- Components -->
+  
+  <script type="text/javascript" src="./src/components/cartList.component.js"></script>
+  
+  
+  
   <!-- ng-dialog -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.6.4/js/ngDialog.min.js"></script>  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.6.4/js/ngDialog.min.js"></script> 
+  
+  <!-- ng-sticky -->
+  <script type="text/javascript" src="./assets/jsLibs/ng-sticky.js"></script>
+  
 
 </body>
 

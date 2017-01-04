@@ -15,7 +15,13 @@
             
             for (var i = 0 ; i < car.items_Cart.length; i++) {
               if (car.items_Cart[i].id === id) {
-                cartService.deleteProduct(i);
+                  if(car.items_Cart[i].quantity > 1){
+                      car.items_Cart[i].quantity = car.items_Cart[i].quantity-1; 
+                      car.items_Cart[i].priceT = car.items_Cart[i].quantity * car.items_Cart[i].price ;
+                  }
+                  else{
+                     cartService.deleteProduct(i);
+                  }
                 break;
               }
             }

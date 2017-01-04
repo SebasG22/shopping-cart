@@ -39,9 +39,7 @@
               }
             }
             
-            //store.deleteProduct(id);
-            
-            var a =ngDialog.open({
+            ngDialog.open({
             template: './src/views/modals/productAddedModal.html'
             });
             
@@ -70,13 +68,32 @@
             var products = [];
             dataService.getJSON(url).then(function (data){
             console.log(data);
-            angular.forEach(data.products,function(item){
-               item.price = parseFloat(item.price);
-               products.push(item);
+            if(data==undefined){
+                ngDialog.open({
+                template: './src/views/modals/jsonGetErrorModal.html'
+                });
+            }
+            else{
+                if(data.products!=undefined){
+                    angular.forEach(data.products,function(item){
+                    item.price = parseFloat(item.price);
+                    products.push(item);
                
-            });
-            store.products=products;
-            store.categories=data.categories;
+                });
+                
+                store.products=products;
+                store.categories=data.categories;
+                
+                }
+                
+                else{
+                     ngDialog.open({
+                    template: './src/views/modals/productsGetErrorModal.html'
+                    });
+                }
+                
+            }
+            
             
         });
             

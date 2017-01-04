@@ -204,7 +204,7 @@
           <div  class="" id="tab1">
             <div class="search-result">
               <ul class="result">
-                <li ng-repeat="product in query = (storeCtrl.products | priceMin:storeCtrl.minPrice | priceMax:storeCtrl.maxPrice  |bestSeller:storeCtrl.checkBestSellerFilter |  available:storeCtrl.checkAvailableFilter |category:storeCtrl.categorySearch | filter:{ name: productNameSearch } | filter: {best_seller: checkBestSeller} | orderBy:storeCtrl.checkSoldOut)">
+                <li ng-repeat="product in query = (storeCtrl.products | priceMin:storeCtrl.minPrice | priceMax:storeCtrl.maxPrice  |bestSeller:storeCtrl.checkBestSellerFilter |  available:storeCtrl.checkAvailableFilter |category:storeCtrl.categorySearch | filter:{ name: productNameSearch } | filter: {best_seller: checkBestSeller} | orderBy:storeCtrl.checkSoldOut | orderBy:storeCtrl.checkBestSeller)">
                   <div class="img">
                     <img ng-src="{{product.img}}">
                   </div>

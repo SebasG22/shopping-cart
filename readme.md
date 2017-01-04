@@ -5,6 +5,8 @@ Bienvenidos a SG STORE!
 SG Store es una tienda en linea creada para satisfacer todos tus gustos, es tan rápida y fluida que sentirás que estarás satisfecho de ser uno de sus clientes. 
 **Shhh, SG Store was made with Angular!**
 
+> Demo  [SG Store Web ](https://sebasg22.github.io/shopping-cart/#!/).
+
 > **Recursos:**
 
 > - Angular JS v.1.6.1
